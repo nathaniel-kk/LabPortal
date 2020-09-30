@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Admin\PageContent;
+namespace App\Http\Requests\LabHome;
 
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class Demo2Request extends FormRequest
+class AddUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,15 +26,17 @@ class Demo2Request extends FormRequest
     public function rules()
     {
         return [
-            'nb_id' => 'required|integer'
+            'application_id'=>'required',
+            'name'=>'required',
+            'sex'=>'required',
+            'email'=>'required|email',
+            'class'=>'required',
+            'self_introduce'=>'required',
         ];
     }
 
-    /**
-     * @param Validator $validator
-     */
     protected function failedValidation(Validator $validator)
     {
-        throw (new HttpResponseException(json_fail('参数错误!',$validator->errors()->all(),100)));
+        throw (new HttpResponseException(json_fail(422, '参数错误!', $validator->errors()->all(), 422)));
     }
 }

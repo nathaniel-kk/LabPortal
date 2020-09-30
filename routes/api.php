@@ -23,21 +23,23 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
     Route::post('register', 'AuthController@registered'); //刷新token
 });
 
-Route::prefix('/admin')->namespace('Admin')->group(function(){
-    Route::get('/showregister','WebController@showregister');
-    Route::get('/showarticle','WebController@showarticle');
-    Route::get('/givelike','WebController@givelike');
-    Route::get('/hotsearch','WebController@hotsearch');
-    Route::get('/duration','WebController@duration');
-    Route::get('/comment','WebController@comment');
-    Route::get('/signsum','WebController@signsum');
-});
-
-Route::prefix('/admin/pagecontent')->namespace('Admin\PageContent')->group(function(){
-    Route::get('/noticesum','NoticeController@NoticeSum');
-    Route::get('/noticestatus','NoticeController@NoticeStatus');
-    Route::get('/noticeselect','NoticeController@NoticeSelect');
-    Route::get('/noticeupdate1','NoticeController@NoticeUpdate1');
-    Route::post('/noticeupdate2','NoticeController@NoticeUpdate2');
-    Route::post('/publish','PublishController@Publish');
+/**
+ * @author  ZhangJinJIn <github.com/YetiSui>
+ */
+Route::prefix('labhome')->namespace("LabHome")->group(function (){
+    Route::post('login', 'TestController@login'); //登陆
+    Route::post('adduser','AdminController@addUser');  //用户报名信息
+    Route::get('uploadpic','HomeController@uploadPic');  //获取轮播图
+    Route::get('gettitle','HomeController@getTitle');  //获取新闻标题
+    Route::get('getmembers','HomeController@getMembers');  //获取历届成员
+    Route::get('getdlink','HomeController@getDlink');  //页面底部友链
+    Route::get('getlink','HomeController@getLink');  //友链展示
+    Route::get('getnew','HomeController@getNew');  //实验室新闻/实验室公告/聚焦实验室
+    Route::get('labintroduce','HomeController@labIntroduce');  //实验室介绍
+    Route::get('guidteacher','HomeController@guidTeacher');  //指导老师
+    Route::get('labenvironment','HomeController@labEnvironment');  //实验室环境
+    Route::get('labarchited','HomeController@labarchited');  //组织架构
+    Route::get('labaspect','HomeController@labAspect');  //实验室方向
+//    Route::get('returntitle','HomeController@returnTitle');  //返回新闻标题内容
+//    Route::get('returnnew','HomeController@returnNew');  //返回实验室新闻/实验室公告/聚焦实验室内容
 });

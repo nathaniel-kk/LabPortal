@@ -10,26 +10,22 @@ class UserInformation extends Model
     public $timestamps = true;
     protected $primaryKey = 'id';
 
-    public static function getid(){
-        try{
-            $data = self::get('id')->count();
-            return $data;
-        }catch(\Exception $e){
-            logError('获取用户信息错误',[$e->getMessage()]);
-            return null;
-        }
-    }
+    /**
+     * 报名信息添加
+     * @author ZhangJinJIn <github.com/YetiSui>
+     * @param $application_id,$name,$sex,$email,$class,$self_intrduce
+     * @return |null
+     */
+    Public static function addUser($application_id){
+        try {
+            $date = Application::create([
+                'application_id'=>$application_id,
 
-    public static function zhucenum($time2){
-        try{
-            $data = self::where('created_at','>=',$time2)
-                ->select('id')
-                ->count();
-            return $data;
-        }catch(\Exception $e){
-            logError('获取用户信息错误',[$e->getMessage()]);
+            ]);
+            return $date;
+        } catch (\Exception $e) {
+            logError('新增用户失败',[$e->getMessage()]);
             return null;
         }
     }
 }
-
