@@ -22,6 +22,7 @@ Route::prefix('auth')->namespace('Auth')->group(function () {
     Route::post('refresh', 'AuthController@refresh'); //刷新token
     Route::post('register', 'AuthController@registered'); //刷新token
 });
+
 /**
  * @author ChenMiao <github.com//Yidaaa-u>
  */
@@ -36,4 +37,23 @@ Route::prefix('admin/commmanage')->namespace('Admin\CommManage')->group(function
     Route::get('commselect', 'CommController@commSelect'); //评论管理页面评论展示
     Route::post('commdel', 'CommController@commDel'); //评论管理页面删除评论
     Route::get('commselectinfo', 'CommController@commSelectInfo'); //评论管理页面查看评论
+
+Route::prefix('member')->namespace('Admin\MemberManage')->group(function(){
+    Route::post('accountadd','MemberController@accountAdd');//添加用户
+    Route::get('accountstate','MemberController@accountState');//禁用操作
+    Route::get('accountquery','MemberController@accountQuery');//用户查询
+    Route::get('accountexhibition','MemberController@accountExhibition');//数据展示
+});
+
+Route::prefix('sign')->namespace('Admin\MemberManage')->group(function (){
+    Route::get('signexhibition','SignController@signExhibition');//数据展示
+    Route::get('signquery','SignController@signQuery');//查询
+    Route::get('signdetails','SignController@signDetails');//详情展示
+    Route::post('signadd','SignController@signAdd');//增加用户
+
+});
+
+Route::prefix('web')->namespace('Admin\MemberManage')->group(function (){
+    Route::get('websitestate','SignController@websiteState');//总禁用
+
 });
