@@ -2,9 +2,12 @@
 
 namespace App\Http\Requests\Admin\PageContent;
 
-use Illuminate\Foundation\Http\FormRequest;
 
-class TestRequest extends FormRequest
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
+
+class studentAdd extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +27,15 @@ class TestRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required|String',
+            'priority'=>'required|String',
+            'member_url'=>'dimensions:min_width=100,min_height=200',
         ];
     }
+
     protected function failedValidation(Validator $validator)
     {
         throw (new HttpResponseException(json_fail('参数错误!',$validator->errors()->all(),100)));
     }
+
 }
