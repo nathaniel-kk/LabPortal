@@ -4681,6 +4681,7 @@
                     "type": "patreon"
                 }
             ],
+
             "time": "2020-03-04T11:21:28+00:00"
             "time": "2020-09-08T12:29:20+00:00"
         },
@@ -5803,6 +5804,15 @@
         {
             "name": "phpspec/prophecy",
             "version": "1.12.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpspec/prophecy.git",
+                "reference": "8ce87516be71aae9b956f81906aaf0338e0d8a2d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpspec/prophecy/zipball/8ce87516be71aae9b956f81906aaf0338e0d8a2d",
+                "reference": "8ce87516be71aae9b956f81906aaf0338e0d8a2d",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",

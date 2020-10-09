@@ -11,6 +11,13 @@ class Comment extends Model
     public $timestamps = true;
     protected $primaryKey = 'comment_id';
 
+    public static function bianhao(){
+        try{
+            $data = self::select('article_id')
+                ->get();
+            return $data;
+        }catch(\Exception $e){
+            logError('获取用户信息错误',[$e->getMessage()]);
     /**
      * 评论管理页面评论展示
      * @author ChenMiao <github.com/Yidaaa-u>
@@ -43,6 +50,17 @@ class Comment extends Model
     }
 
     /**
+     * @return |null
+     * 获取文章编号
+     */
+    public static function wenzhangbianhao(){
+        try{
+            $data = self::select('article_id')
+                ->groupBy('article_id')
+                ->pluck('article_id');
+            return $data;
+        }catch(\Exception $e){
+            logError('获取用户信息错误',[$e->getMessage()]);
      * 评论管理页面删除评论
      * @author ChenMiao <github.com/Yidaaa-u>
      * @param String $comment_id
@@ -60,6 +78,18 @@ class Comment extends Model
     }
 
     /**
+     * @param $bianhao2
+     * @return |null
+     * 查找评论编号
+     */
+    public static function pinglunbianhao($bianhao2){
+        try{
+            $data = self::where('article_id','=',$bianhao2)
+                ->select('comment_id')
+                ->count();
+            return $data;
+        }catch(\Exception $e){
+            logError('获取用户信息错误',[$e->getMessage()]);
      * 评论管理页面查看评论
      * @author ChenMiao <github.com/Yidaaa-u>
      * @param String $comment_id

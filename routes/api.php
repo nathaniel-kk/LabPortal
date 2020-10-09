@@ -87,3 +87,26 @@ Route::prefix('admin/commmanage')->namespace('Admin\CommManage')->group(function
     Route::post('commdel', 'CommController@commDel'); //评论管理页面删除评论
     Route::get('commselectinfo', 'CommController@commSelectInfo'); //评论管理页面查看评论
 });
+/**
+ * @author DuJingWen <github.com/DJWKK>
+ */
+Route::prefix('/admin')->namespace('Admin')->group(function(){
+    Route::get('/showregister','WebController@showregister');
+    Route::get('/showarticle','WebController@showarticle');
+    Route::get('/givelike','WebController@givelike');
+    Route::get('/hotsearch','WebController@hotsearch');
+    Route::get('/duration','WebController@duration');
+    Route::get('/comment','WebController@comment');
+    Route::get('/signsum','WebController@signsum');
+});
+/**
+ * @author DuJingWen <github.com/DJWKK>
+ */
+Route::prefix('/admin/pagecontent')->namespace('Admin\PageContent')->group(function(){
+    Route::get('/noticesum','NoticeController@NoticeSum');
+    Route::get('/noticestatus','NoticeController@NoticeStatus');
+    Route::get('/noticeselect','NoticeController@NoticeSelect');
+    Route::get('/noticeupdate1','NoticeController@NoticeUpdate1');
+    Route::post('/noticeupdate2','NoticeController@NoticeUpdate2');
+    Route::post('/publish','PublishController@Publish');
+});
