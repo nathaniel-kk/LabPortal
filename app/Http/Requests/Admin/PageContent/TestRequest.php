@@ -13,7 +13,7 @@ class TestRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -26,9 +26,5 @@ class TestRequest extends FormRequest
         return [
             //
         ];
-    }
-    protected function failedValidation(Validator $validator)
-    {
-        throw (new HttpResponseException(json_fail('参数错误!',$validator->errors()->all(),100)));
     }
 }
