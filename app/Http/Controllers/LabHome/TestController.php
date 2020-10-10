@@ -13,6 +13,5 @@ class TestController extends Controller
         return $res!=null ?
             json_fail():
             json_success();
-        echo "asd";
     }
 }

@@ -60,4 +60,83 @@ class Login extends \Illuminate\Foundation\Auth\User implements JWTSubject,Authe
             return false;
         }
     }
+
+    /**
+     * 增加用户
+     * @param $login_id
+     * @param $password
+     * @return bool
+     * @throws \Exception
+     */
+    public static function accountAdd($login_id,$password){
+        try {
+            $data =  Login::insert([
+                'login_id' => $login_id,
+                'password' => $password,
+                'login_date'=>now()
+            ]);
+            return $data;
+        } catch(\Exception $e){
+            logError('新增用户信息错误',[$e->getMessage()]);
+            return null;
+        }
+    }
+
+    /**
+     * 禁用操作
+     * @param $login_id
+     * @param $login_status
+     * @return |null
+     */
+    public static function accountState($login_id,$login_status){
+
+        try {if($login_id == null){
+            $data = null;
+        }else{if($login_status == 1){
+            $data =  self::where('login_id',$login_id)
+                ->update(['login_status' => 0,'login_date'=>now()]);
+        }else{
+            $data =   self::where('login_id',$login_id)
+                ->update(['login_status' => 1,'login_date'=>now()]);
+        }}
+            return $data;
+        } catch(\Exception $e){
+            logError('禁用用户错误',[$e->getMessage()]);
+            return null;
+        }
+    }
+
+    /**
+     * 数据展示
+     * @return |null
+     */
+    public static function accountExhibition(){
+        try {
+            $data = Login::join('user_information','login_id','information_id')
+                ->select(['login_id','login_date','login_status','nichen','name','sex'])
+                ->get();
+            return $data;
+        } catch(\Exception $e){
+            logError('禁用用户错误',[$e->getMessage()]);
+            return null;
+        }
+    }
+
+    /**
+     * 增加
+     * @param $id
+     * @return |null
+     */
+    public static function signAdd($id){
+        try {
+            $data =  Login::insert([
+                'login_id' => $id,
+                'login_date'=>now()
+            ]);
+            return $data;
+        } catch(\Exception $e){
+            logError('新增用户信息错误',[$e->getMessage()]);
+            return null;
+        }
+    }
 }
